@@ -1,0 +1,4 @@
+to create virtual env inside project Dir 
+python -m venv environment_name
+to activate
+env_name\Scripts\activate

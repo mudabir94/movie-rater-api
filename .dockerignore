@@ -1,0 +1,6 @@
+venv
+env
+.env
+api-env
+*.env
+db.sqlite3

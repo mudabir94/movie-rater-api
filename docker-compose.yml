@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  # db: 
+  #   # image: postgres
+  #   # environment:
+  #   #   - POSTGRES_USER=${DB_USER}
+  #   #   - POSTGRES_DB=${DB_NAME}
+  #   #   - POSTGRES_PASSWORD=${DB_PASSWORD}
+  #   #   - POSTGRES_HOST=${DB_HOST}
+  #   # volumes:
+  #   #   - ./pgdata:/var/lib/postgresql/data
+  #   # ports:
+  #   #   - "5432:5432"
+  #   image: nouchka/sqlite3:latest
+  #   volumes: 
+  #     - ./db.sqlite3:/app/db/ 
+    
+
+  api:
+    build:  .
+    command: >
+        bash -c "
+        python manage.py makemigrations
+        && python manage.py migrate
+        && python manage.py runserver 0.0.0.0:8000
+        "
+    image: appserver
+
+    volumes:
+      - .:/appserver
+    # depends_on:
+    #   - db
+    ports:
+      - "8000:8000"
